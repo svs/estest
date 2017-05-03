@@ -6,9 +6,9 @@ require 'awesome_print'
 client = Elasticsearch::Client.new
 ap client.cluster.health
 
-castes = JSON.load(File.open("../castes.json"))["castes"]
-jobs = JSON.load(File.open("../occupations.json"))["occupations"]
-names = JSON.load(File.open("../names.json"))["names"]
+castes = JSON.load(File.open("./castes.json"))["castes"]
+jobs = JSON.load(File.open("./occupations.json"))["occupations"]
+names = JSON.load(File.open("./names.json"))["names"]
 
 
 client.indices.delete index: 'test'
