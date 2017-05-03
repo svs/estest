@@ -16,7 +16,7 @@ client.indices.delete index: 'test'
 t = Time.new
 1_00_000.times do |i|
   b = {name: names.sample, caste: castes.sample, job: jobs.sample}
-  b[:seen] = (Array.new(rand(1000)) { rand(1000) }).uniq.compact
+  b[:seen] = (Array.new(rand(10000)) { rand(100000) }).uniq.compact
   x = client.index index: 'test', type: 'profile', body: b
   if i%100 == 0
     ap i
