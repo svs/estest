@@ -20,10 +20,11 @@ names = JSON.load(File.open("./names.json"))["names"]
 client.indices.delete index: 'test' rescue nil
 
 t = Time.new
-n = 1_00_000
+n = 1_00
 @q = Queue.new
 n.times do |i|
   b = {
+    memberlogin: i,
     religion: ['Yogi','Bhogi','Rogi','Jedi','Pastafarian'].sample,
     name: names.sample,
     caste: castes.sample,
@@ -46,7 +47,7 @@ n.times do |i|
     hidden: [true, false].sample,
     last_login_date: Date.today - rand(90),
   }
-  b[:seen] = (Array.new(rand(10000)) { rand(100000) }).uniq.compact
+#  b[:seen] = (Array.new(rand(100)) { rand(100000) }).uniq.compact
   @q.push(b)
   if @q.length%1000 == 0
     p @q.length
